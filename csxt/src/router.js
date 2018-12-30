@@ -33,6 +33,11 @@ export default new Router({
       path: '/pwdedit',
       component: () => import(/* webpackChunkName: "UserAdd" */ './views/UserPwdEdit.vue')
     },
+    // 分类管理里的俩个子项
+    {
+      path: '/classify',
+      component: () => import( './views/Classify.vue')
+    },
   ]
 
 

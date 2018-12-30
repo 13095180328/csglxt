@@ -16,6 +16,9 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span>添加用户</span>
+            <el-button type="text">操作按钮1</el-button>
+            <el-button type="text">操作按钮2</el-button>
+            <el-button type="text">操作按钮3</el-button>
           </div>
           
           <!-- 用户登录注册 -->
@@ -41,8 +44,8 @@
           <!-- 下拉框 -->
           <el-form-item label="用户组" prop="userElect">
             <el-select v-model="ruleForm2.userElect" placeholder="请选择">
-              <el-option label="普通管理员" value="shanghai"></el-option>
-              <el-option label="超级管理员" value="beijing"></el-option>
+              <el-option label="普通管理员" value="普通管理"></el-option>
+              <el-option label="超级管理员" value="超级管理"></el-option>
             </el-select>
           </el-form-item>
 
@@ -135,8 +138,32 @@ export default {
         //valid参数表示验证的结果，true表示验证通过，false验证失败
         if (valid) {
           // alert("登录成功✔");
-          //使用路由对象的push实现跳转(this指向实例)
-          this.$router.push('/');
+          //使用路由对象的push实现跳转(this指向实例) this.$router.push('/');
+         console.log(this.ruleForm2);
+        //  后端地址 （是服务器地址就是监听端口那个）
+         this.axios.post('http://192.168.0.106:2001/user/useradd',
+        //  使用qs处理post参数 ruleForm2是返回的对象
+         this.qs.stringify(this.ruleForm2)).then((result)=>{
+           console.log('服务器成功返回的结果',result)
+          //  根据返回的结果处理 是否注册成功
+              if(result.data.isOk){
+                this.$message({
+                  message:result.data.msg,
+                  type:'success'
+                });
+                setTimeout(() => {
+                  this.$router.push("/userlist");
+                }, 300);
+              } else {
+                // 添加失败
+                this.$message.error(result.data.msg);
+              } 
+          }).catch(err=>{
+            console.log('服务器错误返回的信息',err)
+          });
+
+        // 通过去那段验证 才使用axios发请求到后端api
+
         } else {
           // alert("登录失败✖");
           return false;
@@ -144,6 +171,7 @@ export default {
       });
     },
   }
+
 
 
 }

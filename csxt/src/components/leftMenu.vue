@@ -26,9 +26,9 @@
           <template slot="title">
             <span>分类管理</span>
           </template>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-          <el-menu-item index="1-3">选项3</el-menu-item>
+          <el-menu-item index="/classify"> <router-link to="/classify">分类管理</router-link></el-menu-item>
+          <el-menu-item index="1-2"> <router-link to="/Classify">添加分类</router-link></el-menu-item>
+
         </el-submenu>
         <el-submenu index="2">
           <template slot="title">
