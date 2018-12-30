@@ -1,0 +1,187 @@
+/* 全局 */
+a{text-decoration:none; color: #888888;}
+
+
+
+
+.el-header, .el-footer {
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 60px;
+  }
+  
+  .el-aside {
+    background:url('../leftBG.png');
+    color: #333;
+    overflow:hidden;
+  }
+  
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    margin-top:-40px;
+    padding:15px;
+  }
+  
+  body > .el-container {
+    margin-bottom: 40px;
+  }
+  
+  .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+  }
+  
+  .el-container:nth-child(7) .el-aside {
+    line-height: 320px;
+  }
+
+
+
+
+
+
+
+/* 设置 ------------------------------------------------------超市管理系统标题 */
+#titleBox{
+  text-align:right;
+  padding-right: 20px;
+  height: 140px;
+  margin:0;
+}
+#titleBox h1{
+  margin: 0px;
+  padding-top:20px;
+  color:#d1d0cf;
+  font-family: "黑体";
+  font-size:22px;
+}
+#titleBox .msgBox{
+  font-size:10px;
+  padding-left:110px;
+  margin:40px 0 10px 0;
+}
+#titleBox .s1{
+  color:#888888;
+}
+#titleBox .s2{
+  color:#cccccc;
+}
+/* 用户管理或退出 */
+#titleBox .t2::before{content: '|'; margin:0 5px;}
+#titleBox .msgBox1{
+  color:#cccccc;
+  font-size:12px;
+  padding-left:50px;
+}
+.msgBox1 .t1{cursor:pointer; color:#ccc;}
+.msgBox1 .t2 a{color:#ccc;}
+
+
+
+
+
+/* ----------------------------------------------------------------右边标题(上面标题) */
+#rightUser p{margin:0; font-size:22px; font-weight:bold; height:45px;}
+#myel-header .p2{font-size:14px; font-weight:normal; cursor:pointer;}
+
+
+
+
+
+
+
+/* ----------------------------------------------------------------右边中间（变化内容） */
+.el-card__header{background:linear-gradient(#fff,#ccc); padding:10px;}
+/* 卡片标题 */
+.clearfix>span{font-weight:bold; font-size:14px;}      
+.el-alert{margin-bottom:10px;}
+/* 内容切换的样式 */
+.el-card__header .el-button--text{float:right; 
+  padding:0px; margin-left:36px; color:#333; line-height:20px;
+  font-size:14px;
+}
+
+
+
+
+
+
+
+/* ----------------------------------------------------------------右边底部的边线 */
+.el-footer p{border-top:1px #cccccc solid; margin:0px;font-size:12px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -----------------------------------------------------左边菜单取消默认样式 */
+
+.el-menu-vertical-demo{background-color:transparent; width:205px; margin-left: 26px;}  /* 右边的ul*/
+ .el-submenu__title{                                                           /* 分类菜单li */
+    padding: 0px;   color:white;
+    background:url("../menuBG.png") repeat-x;
+    margin-top:15px;
+    padding:0px;
+    text-align: right;
+    height:32px;
+    line-height: 30px;
+    border-radius:5px 0 0 5px;
+ }
+ .el-submenu__title span{margin-right:20px;}
+.el-icon-arrow-down:before{content:'';}
+
+
+
+/* 分类菜单的子菜单 Ul */
+.el-submenu .el-menu{background-color:transparent;}
+/* 分类的菜单子选项 LI */
+.el-submenu .el-menu-item{
+    color: #888888; 
+    height:32px; line-height:32px;
+    padding:0px;  text-align:right; padding-right:20px;
+    margin-top:5px; border-radius:5px 0 0 5px;
+}
+
+/* 分类子菜单激活样式和hover 效果 */
+.el-menu-item.is-active{
+     font-weight:bold; background:rgba(255, 255, 255, 0.5);
+}
+.el-menu-item.is-active a{color:white;}
+.el-menu-item:hover {
+    background:rgba(255, 255, 255, 0.2);
+}
+
+/* 左边的一级菜单hover */
+.el-submenu .el-submenu__title:hover{
+    color:black;
+}
+
+
+
+
+
+/* flex拉伸布局 */
+#mainContent{
+  display:flex;   
+  flex-wrap:wrap;
+}
+/* 三个子元素 的宽度为100% */
+#mainContent>*{
+  width:100%;
+
+  max-height:450px;
+}
+
+
+
+
+
