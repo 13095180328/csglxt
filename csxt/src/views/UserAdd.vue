@@ -141,10 +141,9 @@ export default {
           //使用路由对象的push实现跳转(this指向实例) this.$router.push('/');
          console.log(this.ruleForm2);
         //  后端地址 （是服务器地址就是监听端口那个）
-         this.axios.post('http://192.168.0.106:2001/user/useradd',
+         this.axios.post(this.apiHost+'/user/useradd',
         //  使用qs处理post参数 ruleForm2是返回的对象
          this.qs.stringify(this.ruleForm2)).then((result)=>{
-           console.log('服务器成功返回的结果',result)
           //  根据返回的结果处理 是否注册成功
               if(result.data.isOk){
                 this.$message({
@@ -153,13 +152,13 @@ export default {
                 });
                 setTimeout(() => {
                   this.$router.push("/userlist");
-                }, 300);
+                },100);
               } else {
                 // 添加失败
                 this.$message.error(result.data.msg);
               } 
           }).catch(err=>{
-            console.log('服务器错误返回的信息',err)
+            console.log('服务器错误返回的信息',err.message)
           });
 
         // 通过去那段验证 才使用axios发请求到后端api

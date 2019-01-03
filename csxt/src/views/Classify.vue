@@ -19,19 +19,23 @@
             <el-button type="text">操作按钮1</el-button>
             <el-button type="text">操作按钮2</el-button>
           </div>
-
           <!-- 内容 -->
-          <div>
-            <p>所属分类:</p>
-            <el-select id="selectBox" v-model="value" placeholder="------顶层分类------">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </div>
+            <el-table
+                :data="tableData"
+                stripe
+                style="width: 100%">
+
+                <el-table-column
+                  prop="name"
+                  label="分类名称"
+                  width="500">
+                </el-table-column>
+
+                <el-table-column
+                  prop="address"
+                  label="管理">
+                </el-table-column>
+            </el-table>
 
         </el-card>
       </el-main>
@@ -56,28 +60,25 @@
   import RightTop from '../components/rightTop.vue';
   import RightBottom from '../components/rightBottom.vue';
 export default {
+    
     data() {
       return {
-        options: [{
-          value: '选项1',
-          label: '黄金糕'
+        tableData: [{
+          name: '日用品1',
+          address: '上海市普陀区金沙江路',
+          Datah:'<i class="el-icon-edit"></i>'
         }, {
-          value: '选项2',
-          label: '双皮奶'
+          name: '日用品2',
+          address: '上海市普陀区金沙江路 1517 弄'
         }, {
-          value: '选项3',
-          label: '蚵仔煎'
+          name: '日用品3',
+          address: '上海市普陀区金沙江路 1519 弄'
         }, {
-          value: '选项4',
-          label: '龙须面'
-        }, {
-          value: '选项5',
-          label: '北京烤鸭'
-        }],
-        value: '',
+          name: '日用品4',
+          address: '上海市普陀区金沙江路 1516 弄'
+        }]
       }
     },
-
 
 
 
@@ -104,8 +105,6 @@ export default {
 
 
 <style>
-/* 下拉框 */
-#selectBox{height:30px; width:170px;}
-.el-icon-arrow-up{line-height:30px;}
+
 
 </style>

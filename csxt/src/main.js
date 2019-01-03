@@ -14,6 +14,46 @@ import qs from 'qs'
 Vue.prototype.qs = qs;
 
 
+
+//配置全局ip( 每次换ip都要更换 )
+let updateip = "http://192.168.0.104:2002";
+//把这个ip地址挂在vue原型 供实例使用 （换网需更换端口 还有 跨域cookies认证）
+Vue.prototype.apiHost = updateip;
+
+
+//配置路由守卫
+router.beforeEach((to, from, next) => {
+
+    //** 让ajax携带cookie证书 **
+  axios.defaults.withCredentials=true;
+  axios.get(updateip+'/user/getCookie')
+  .then((result)=>{
+    if(result.data.isOk || to.path=="/login"){
+      next();
+    } else {
+      next('/login')
+    }
+  }).catch((err)=>{
+   console.error("错误了!"+err.message);
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Vue.config.productionTip = false
 
 new Vue({

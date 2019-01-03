@@ -10,7 +10,7 @@
         </div>
         <div class="msgBox1">
           <span class="t1">管理首页</span>
-          <span class="t2"> <router-link to="/Login">退出系统</router-link></span>
+          <span class="t2"> <a href="javascript:void(0)" @click="userOut()">退出系统</a></span>
         </div>
       </div>
 
@@ -27,16 +27,15 @@
             <span>分类管理</span>
           </template>
           <el-menu-item index="/classify"> <router-link to="/classify">分类管理</router-link></el-menu-item>
-          <el-menu-item index="1-2"> <router-link to="/Classify">添加分类</router-link></el-menu-item>
+          <el-menu-item index="/addclassify"> <router-link to="/addclassify">添加分类</router-link></el-menu-item>
 
         </el-submenu>
         <el-submenu index="2">
           <template slot="title">
             <span>商品管理</span>
           </template>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-          <el-menu-item index="1-3">选项2</el-menu-item>
+          <el-menu-item index="/goodslist"> <router-link to="/goodslist">商品管理</router-link></el-menu-item>
+          <el-menu-item index="/goodsadd"> <router-link to="/goodsadd">添加商品</router-link></el-menu-item>
         </el-submenu>
         <el-submenu index="3">
           <template slot="title">
@@ -58,9 +57,8 @@
           <template slot="title">
             <span>统计管理</span>
           </template>
-          <el-menu-item index="1-1">管理</el-menu-item>
+          <el-menu-item index="/goodsecharts"> <router-link to="/goodsecharts">销售管理</router-link></el-menu-item>
           <el-menu-item index="1-2">管理</el-menu-item>
-          <el-menu-item index="1-3">管理</el-menu-item>
         </el-submenu>
         <el-submenu index="6">
           <template slot="title">
@@ -101,13 +99,35 @@
     export default {
         methods: {
             // 菜单展开和收起的方法
-        handleOpen(key, keyPath) {
-            console.log(key, keyPath);
+          handleOpen(key, keyPath) {
+              console.log(key, keyPath);
+          },
+          handleClose(key, keyPath) {
+              console.log(key, keyPath);
+          },
+
+        // 用户退出方法
+          userOut(){  
+            this.axios.get(this.apiHost+'/user/userOut')
+            .then((result)=>{
+              // 根据后端返回的作判断
+              if(result.data.isOk){
+                //根据是否清除成功处理业务逻辑
+                this.$message({
+                  message: result.data.msg,
+                  type: 'success'
+                });
+                setTimeout(()=>{
+                  this.$router.push("/login");
+                },100)
+              }
+            }).catch((err)=>{
+              console.log(err);
+            })
+          }
         },
-        handleClose(key, keyPath) {
-            console.log(key, keyPath);
-        }
-        },
+
+        
     }
 
 </script>

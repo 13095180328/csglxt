@@ -20,8 +20,10 @@
             <el-button type="text">操作按钮2</el-button>
             <el-button type="text">操作按钮3</el-button>
           </div>
-          <!-- 提示消息框 -->
+          <!-- 内容 -->
           <h1>123123</h1>
+
+          
         </el-card>
       </el-main>
 

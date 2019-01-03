@@ -38,6 +38,24 @@ export default new Router({
       path: '/classify',
       component: () => import( './views/Classify.vue')
     },
+    {
+      path: '/addclassify',
+      component: () => import( './views/Addclassify.vue')
+    },
+    //添加商品
+    {
+      path: '/goodsadd',
+      component: () => import( './views/GoodsAdd.vue')
+    },
+    {
+      path: '/goodslist',
+      component: () => import( './views/GoodsList.vue')
+    },
+    //统计管理
+    {
+      path: '/goodsecharts',
+      component: () => import( './views/GoodsEcharts.vue')
+    },
   ]
 
 
