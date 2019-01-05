@@ -84,11 +84,11 @@
 
                 <el-table-column label="操作" width="180">
                   <template slot-scope="scope">
-                    <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"><i class="el-icon-edit"></i> 编辑</el-button>
+                    <el-button size="mini" @click="handleEdit(scope.row)"><i class="el-icon-edit"></i> 编辑</el-button>
                     <el-button
                       size="mini"
                       type="danger"
-                      @click="handleDelete(scope.$index, scope.row)"
+                      @click="handleDelete(scope.row)"
                     ><i class="el-icon-delete"></i>删除</el-button>
                   </template>
                 </el-table-column>
@@ -159,11 +159,25 @@ export default {
 
 
   methods: {
-    handleEdit(index, row) {
-      console.log(index, row);
+    
+
+
+
+
+    //编辑修改
+    handleEdit(row) {
+      console.log(row);
     },
-    handleDelete(index, row) {
-      console.log(index, row);
+    //删除列表选中的
+    handleDelete(row) {
+      console.log(row)
+      //将当前行删除
+      this.axios.get(this.apiHost+`/goods/delgoods?goodsid=${row.goodsid}`)
+      .then((result)=>{
+        if(result.data.isOk){
+          this.getGoods();
+        }
+      })
     },
 
     // 封装成一个方法
@@ -175,7 +189,7 @@ export default {
         ).then(result=>{
           //把查询到的商品信息的数组对象赋值给表格数据属性
           //查询到的商品数组对象赋值给表格数组属性
-          console.log(result);
+          // console.log(result);
           this.tableData=result.data.goodsArray;
           // 把后端返回的tatal总记录数赋值给total属性
           this.total = result.data.total;
@@ -207,7 +221,7 @@ export default {
 
     //视图挂载完成执行的钩子
     mounted(){
-      console.log("vue的视图挂载完毕!");
+
     },
     // 实例创建完毕后执行的钩子
     created(){

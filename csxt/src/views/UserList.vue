@@ -224,7 +224,7 @@ export default {
 
     // 删除用户的方法
     // scope.row就是一行数据（数据对象）{userid:4,username:’赵六’}
-    handleDelete( id) {
+    handleDelete(id) {
       console.log(id);
       // 发axios发请求 带着id
       this.axios(this.apiHost+'/user/dellist?userid='+id)

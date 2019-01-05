@@ -6,7 +6,7 @@
         <h1>益家超市管理系统</h1>
         <div class="msgBox">
           <span class="s1">你好&nbsp;</span>
-          <span class="s2">admin</span>
+          <span class="s2">{{ getusernam() }}</span>
         </div>
         <div class="msgBox1">
           <span class="t1">管理首页</span>
@@ -97,6 +97,26 @@
 
 <script>
     export default {
+
+    data(){
+      return {
+        getusernam(){
+          this.axios.get(this.apiHost+'/user/getusername')
+          .then((result)=>{
+            if(result.data){
+              let nameBox = document.querySelector('.s2');
+              nameBox.innerHTML = result.data;
+            }
+          })
+        }
+
+      }
+    },
+
+
+
+
+
         methods: {
             // 菜单展开和收起的方法
           handleOpen(key, keyPath) {

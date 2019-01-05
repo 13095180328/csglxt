@@ -153,6 +153,7 @@ export default {
           this.axios.post(this.apiHost+'/user/pwdEdit',this.qs.stringify(this.ruleForm2))
           .then((result)=>{
             console.log("后端返回的数据：",result.data);
+            //返回的数据 做判断
             if(result.data.isOk){
                 this.$message({
                 message: result.data.msg,
@@ -161,13 +162,13 @@ export default {
               setTimeout(()=>{
                 this.$router.push('/login')
               },600)
+            } else{
+              this.$message.error(result.data.msg);
             }
           }).catch((err)=>{
             this.$message.error('错了哦'+result.data.msg);
           })
-          
         } else {
-          alert("修改密码失败✖");
           return false;
         }
       });

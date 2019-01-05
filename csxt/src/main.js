@@ -16,7 +16,7 @@ Vue.prototype.qs = qs;
 
 
 //配置全局ip( 每次换ip都要更换 )
-let updateip = "http://192.168.0.104:2002";
+let updateip = "http://192.168.0.106:2002";
 //把这个ip地址挂在vue原型 供实例使用 （换网需更换端口 还有 跨域cookies认证）
 Vue.prototype.apiHost = updateip;
 

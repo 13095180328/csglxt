@@ -26,7 +26,7 @@ conn.connect((err)=>{
 //通用的跨域路由
 router.all("*",(req,res,next)=>{
   //res.header("Access-Control-Allow-Origin","*"); //携带cookie证书是，跨域不能使用通配符*
-  res.header("Access-Control-Allow-Origin","http://192.168.0.104:8080"); //允许携带cookie证书的域名
+  res.header("Access-Control-Allow-Origin","http://192.168.0.106:8080"); //允许携带cookie证书的域名
   res.header("Access-Control-Allow-Credentials",true);  //值是一个布尔值，表示是否允许发送Cookie
   next(); //放行执行下面的路由
 });
@@ -57,6 +57,34 @@ router.post("/add",(req,res)=>{
         }
     })
  });
+
+
+
+
+
+
+
+// 删除点击的商品
+router.get('/delgoods',(req,res)=>{
+    //接受参数
+    let goodsid = req.query.goodsid;
+    let sqlStr = `delete from goodsinfo where goodsid=${goodsid}`;
+    conn.query(sqlStr,(err,result)=>{
+        if(err){
+            throw err;
+        }else{
+            if(result.affectedRows > 0){
+                res.json({'isOk':true, 'meg':false})
+            }else{
+                res.json({'isOk':false})
+            }
+        }
+    })
+})
+
+
+
+
 
 
 

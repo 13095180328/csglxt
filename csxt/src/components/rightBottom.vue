@@ -14,7 +14,21 @@
 
 <script>
 export default {
-    
+        data(){
+      return {
+        getusernam(){
+          this.axios.get(this.apiHost+'/user/getusername')
+          .then((result)=>{
+            if(result.data){
+              let nameBox = document.getElementById('nameBox');
+              console.log(result.data)
+              nameBox.innerHTML = result.data;
+            }
+          })
+        }
+
+      }
+    },
 }
 </script>
 

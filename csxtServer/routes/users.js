@@ -26,7 +26,7 @@ conn.connect((err)=>{
 //通用的跨域路由
 router.all("*",(req,res,next)=>{
   //res.header("Access-Control-Allow-Origin","*"); //携带cookie证书是，跨域不能使用通配符*
-  res.header("Access-Control-Allow-Origin","http://192.168.0.104:8080"); //允许携带cookie证书的域名
+  res.header("Access-Control-Allow-Origin","http://192.168.0.106:8080"); //允许携带cookie证书的域名
   res.header("Access-Control-Allow-Credentials",true);  //值是一个布尔值，表示是否允许发送Cookie
   next(); //放行执行下面的路由
 });
@@ -147,6 +147,37 @@ router.post('/newuserdata',(req,res)=>{
 
 
 
+
+//查询用户是否存在
+router.get('/userexist',(req,res)=>{
+  let val = req.query.username;
+  //查询数据库是否有改账号
+  // select * from userinfo order by userid DESC
+  let sqlStr = `select * from userinfo where username=${val}`;
+  conn.query(sqlStr,(err,result)=>{
+    if(err){
+      throw err;
+    }else{
+      if(result.length > 0){
+        res.json({'isOk':true})
+      }else{
+        res.json({'isOk':false})
+      }
+    }
+  })
+})
+
+
+
+
+
+
+
+
+
+
+
+
 // 当前用户修改密码   
 router.post('/pwdEdit',(req,res)=>{
   let{userpwd,newpass,checkPass} = req.body;
@@ -158,13 +189,16 @@ router.post('/pwdEdit',(req,res)=>{
   let newsqlArr = [newpass,cookieval,userpwd];
   conn.query(newsql,newsqlArr,(err,result)=>{
     if(err){
-      res,send({'isOk':false, 'msg':"✖ 密码修改失败"})
+      // res,send({'isOk':false, 'msg':"✖ 密码修改失败"})
+      throw err;
     } else {
       if(result.affectedRows > 0){
         //数据库修改完成后 删除cookie 并返回提示信息
         res.clearCookie("userid");
         res.clearCookie("username");
         res.json({'isOk':true, 'msg':"✔ 密码修改成功"})
+      }else{
+        res.json({'isOk':false, 'msg':"✖ 密码修改失败"})
       }
     }
   })
@@ -217,6 +251,26 @@ router.get('/getCookie',(req,res)=>{
     res.send({"isOk":false});
   }
 })
+
+
+
+
+
+
+
+
+router.get('/getusername',(req,res)=>{
+  //获取cookie username
+  let cookiename = req.cookies.username;
+  res.send(cookiename);
+})
+
+
+
+
+
+
+
 
 
 

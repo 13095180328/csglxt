@@ -32,7 +32,8 @@
           class="demo-ruleForm"
           >
           <el-form-item label="账号" prop="username">
-            <el-input type="text" v-model="ruleForm2.username" autocomplete="off"></el-input>
+            <el-input id="bordersuer" type="text" v-model="ruleForm2.username" autocomplete="off"></el-input>
+            <span id="testexist">已存在请更换账号</span>
           </el-form-item>
           <el-form-item label="密码" prop="pass">
             <el-input type="password" v-model="ruleForm2.pass" autocomplete="off"></el-input>
@@ -50,7 +51,7 @@
           </el-form-item>
 
           <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm2')">注册</el-button>
+            <el-button id="btnZhuc"  type="primary" @click="submitForm('ruleForm2')">注册</el-button>
           </el-form-item>
         </el-form>
 
@@ -131,6 +132,31 @@ export default {
 
 
   methods: {
+    //验证
+    /* losepoint(){
+      let dom = document.querySelector('#testexist');
+      let btn = document.querySelector('#btnZhuc');
+      let bor = document.querySelector('#bordersuer');
+      let val = document.querySelector('#bordersuer').value;
+      this.axios.get(this.apiHost+'/user/userexist?username='+val)
+      .then((result)=>{
+        if(result.data.isOk){
+          dom.style.display='inline-block';
+        }else{
+          dom.style.display='none';
+        }
+      }).catch(()=>{
+
+      })
+    }, */
+
+
+
+
+
+
+
+
     // 提交表单的方法
     submitForm(formName) {
       // 调用组件验证验证的方法
@@ -194,5 +220,9 @@ export default {
 .el-card__body{padding:0px 30px;}
 
 
+/* 用户存在提示 */
+#testexist{font-size:12px; margin-left:10px; color:red; display:none;}
+/* #bordersuer{border:pink 1px solid;} */
+.el-icon-circle-check:before{content:"s"; display:none;}
 </style>
 

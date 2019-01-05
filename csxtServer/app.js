@@ -43,7 +43,7 @@ app.use(function(err, req, res, next) {
 
 // 监听端口
 app.listen(2002,()=>{
-  console.log("服务器启动成功  http://192.168.0.104:2002")
+  console.log("服务器启动成功  http://192.168.0.106:2002")
 })
 
 module.exports = app;
